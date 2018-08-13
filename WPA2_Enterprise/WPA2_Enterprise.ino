@@ -25,6 +25,7 @@ extern "C" { //Create C Linkage
 static const char* ssid = "NETWORKSSID"; //SSID(Network) Name
 static const char* username = "USERNAME"; //Login Name
 static const char* password = "PASSWORD"; //Password
+int connectionFlag=0; //set state of flag
 
 void ConnectToWPA2Enterprise(){ //Funtion to connect to WPA2 Enterprise
     Serial.print("\r\nDisconnecting from last APs");
@@ -59,13 +60,16 @@ void ConnectToWPA2Enterprise(){ //Funtion to connect to WPA2 Enterprise
     Serial.println("WiFi connected to "+String(ssid)); //Send Header to Serial Port
     Serial.println("IP address: "); //Send Header to Serial Port
     Serial.println(WiFi.localIP()); //Send IP Address to Serial Port
+    connectionFlag=1;
     return;
     }
     
 void setup(){ //Function to run on startup
     Serial.begin(115200); //Open Serial Port with baudrate 9600
-    ConnectToWPA2Enterprise(); //Call function to connect to WPA2 Enterprise network
     }
 
 void loop(){
+    if(connectionFlag==0;){ //Check state of flag
+        ConnectToWPA2Enterprise(); //Call function to connect to WPA2 Enterprise network
+        }
     }
